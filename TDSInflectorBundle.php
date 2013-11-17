@@ -1,6 +1,6 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle;
+namespace TDS\InflectorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

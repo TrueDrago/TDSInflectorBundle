@@ -1,13 +1,13 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle\Strategy;
+namespace TDS\InflectorBundle\Strategy;
 
 use Lsw\ApiCallerBundle\Call\HttpGetHtml;
 use Lsw\ApiCallerBundle\Call\HttpPost;
 use Lsw\ApiCallerBundle\Caller\LoggingApiCaller;
-use TDS\Bundle\InflectorBundle\Definition\InflectionStrategyAbstract;
-use TDS\Bundle\InflectorBundle\Definition\InflectionStrategyInterface;
-use TDS\Bundle\InflectorBundle\Inflector\Word;
+use TDS\InflectorBundle\Definition\InflectionStrategyAbstract;
+use TDS\InflectorBundle\Definition\InflectionStrategyInterface;
+use TDS\InflectorBundle\Inflector\Word;
 
 class Yandex extends InflectionStrategyAbstract implements InflectionStrategyInterface {
 

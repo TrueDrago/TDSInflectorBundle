@@ -1,8 +1,8 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle\Inflector;
+namespace TDS\InflectorBundle\Inflector;
 
-use \TDS\Bundle\InflectorBundle\Definition\InflectionStrategyInterface;
+use \TDS\InflectorBundle\Definition\InflectionStrategyInterface;
 
 /**
  *

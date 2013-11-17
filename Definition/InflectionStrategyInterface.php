@@ -1,7 +1,7 @@
 <?php
-namespace TDS\Bundle\InflectorBundle\Definition;
+namespace TDS\InflectorBundle\Definition;
 
-use TDS\Bundle\InflectorBundle\Inflector\Word;
+use TDS\InflectorBundle\Inflector\Word;
 
 interface InflectionStrategyInterface {
 

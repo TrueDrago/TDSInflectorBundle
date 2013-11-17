@@ -1,11 +1,11 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle\Inflector;
+namespace TDS\InflectorBundle\Inflector;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use TDS\Bundle\InflectorBundle\Definition\InflectionStrategyInterface;
-use TDS\Bundle\InflectorBundle\Strategy\Yandex;
+use TDS\InflectorBundle\Definition\InflectionStrategyInterface;
+use TDS\InflectorBundle\Strategy\Yandex;
 
 class Inflector
 {

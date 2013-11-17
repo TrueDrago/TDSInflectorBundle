@@ -1,10 +1,10 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle\Definition;
+namespace TDS\InflectorBundle\Definition;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
-use TDS\Bundle\InflectorBundle\Definition\InflectionStrategyInterface;
-use TDS\Bundle\InflectorBundle\Inflector\Word;
+use TDS\InflectorBundle\Definition\InflectionStrategyInterface;
+use TDS\InflectorBundle\Inflector\Word;
 
 abstract class InflectionStrategyAbstract extends ContainerAware implements InflectionStrategyInterface {
 

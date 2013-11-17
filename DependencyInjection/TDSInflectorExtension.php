@@ -1,6 +1,6 @@
 <?php
 
-namespace TDS\Bundle\InflectorBundle\DependencyInjection;
+namespace TDS\InflectorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

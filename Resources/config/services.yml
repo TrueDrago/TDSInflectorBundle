@@ -1,6 +1,6 @@
 parameters:
-    tds.inflector.class: TDS\Bundle\InflectorBundle\Inflector\Inflector
-    tds.twig.indlector_extension.class: TDS\Bundle\InflectorBundle\Twig\InflectorExtension
+    tds.inflector.class: TDS\InflectorBundle\Inflector\Inflector
+    tds.twig.indlector_extension.class: TDS\InflectorBundle\Twig\InflectorExtension
 
 services:
     tds.inflector:
