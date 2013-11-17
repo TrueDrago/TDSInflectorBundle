@@ -9,7 +9,7 @@
 		{
 			"name": "Igor Demishev",
 			"email": "truedrago@gmail.com"
-		},
+		}
 	],
 	"minimum-stability": "dev",
 	"require": {
