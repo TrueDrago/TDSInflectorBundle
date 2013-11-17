@@ -1,0 +1,32 @@
+{
+	"name": "tds/inflector-bundle",
+	"type": "symfony-bundle",
+	"description": "Symfony TDSInflectorBundle",
+	"keywords": ["Russian, Inflect"],
+	"homepage": "https://github.com/TrueDrago/TDSInflectorBundle",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Igor Demishev",
+			"email": "truedrago@gmail.com"
+		},
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.3.2",
+		"symfony/framework-bundle": "~2.1",
+		"leaseweb/api-caller-bundle": "*"
+	},
+	"require-dev": {
+		"twig/twig": "~1.5",
+		"symfony/yaml": "~2.1",
+		"symfony/validator": "~2.1"
+	},
+	"suggest": {
+		"twig/twig": "~1.5"
+	},
+	"autoload": {
+		"psr-0": { "TDS\\InflectorBundle": "" }
+	},
+	"target-dir": "TDS/InflectorBundle"
+}
