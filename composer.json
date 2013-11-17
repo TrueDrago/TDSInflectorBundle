@@ -2,7 +2,7 @@
 	"name": "tds/inflector-bundle",
 	"type": "symfony-bundle",
 	"description": "Symfony TDSInflectorBundle",
-	"keywords": ["Russian, Inflect"],
+	"keywords": ["Russian", "Inflect"],
 	"homepage": "https://github.com/TrueDrago/TDSInflectorBundle",
 	"license": "MIT",
 	"authors": [
