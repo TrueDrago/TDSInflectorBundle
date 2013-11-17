@@ -1,5 +1,5 @@
 <?
-namespace TDS\Bundle\InflectorBundle\Twig;
+namespace TDS\InflectorBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
