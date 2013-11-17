@@ -1,0 +1,13 @@
+parameters:
+    tds.inflector.class: TDS\Bundle\InflectorBundle\Inflector\Inflector
+    tds.twig.indlector_extension.class: TDS\Bundle\InflectorBundle\Twig\InflectorExtension
+
+services:
+    tds.inflector:
+        class: %tds.inflector.class%
+        arguments: [@service_container]
+    tds.twig.inflector_extension:
+        class: %tds.twig.indlector_extension.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
