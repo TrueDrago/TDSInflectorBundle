@@ -16,16 +16,16 @@
 		"php": ">=5.3.2",
 		"symfony/framework-bundle": "~2.1",
 		"symfony/yaml": "~2.1",
-		"leaseweb/api-caller-bundle": "*",
-		"leaseweb/memcache-bundle": "*"
+		"leaseweb/api-caller-bundle": "*"
 	},
 	"require-dev": {
 		"twig/twig": "~1.5",
-		"symfony/yaml": "~2.1",
-		"symfony/validator": "~2.1"
+		"symfony/validator": "~2.1",
+		"leaseweb/memcache-bundle": "*"
 	},
 	"suggest": {
-		"twig/twig": "~1.5"
+		"twig/twig": "~1.5",
+		"leaseweb/memcache-bundle": "*"
 	},
 	"autoload": {
 		"psr-0": { "TDS\\InflectorBundle": "" }
