@@ -26,7 +26,8 @@ class Inflector
  */
 	public function createWord( $WordString )
 	{
-		return new Word( $WordString, $this->getInflectionStrategy() );
+		$cacheTime = $this->container->getParameter( 'tds_inflector.cache_time' );
+		return new Word( $WordString, $this->getInflectionStrategy(), $this->container, $cacheTime );
 	}
 
 /**

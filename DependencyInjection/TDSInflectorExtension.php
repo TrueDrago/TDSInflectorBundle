@@ -22,6 +22,11 @@ class TDSInflectorExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+		$container->setParameter(
+			'tds_inflector.cache_time',
+			$config['cache_time']
+		);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

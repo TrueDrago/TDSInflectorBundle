@@ -12,4 +12,5 @@ interface InflectionStrategyInterface {
  * @return void
  */
 	public function inflect( Word $Word );
+
 }

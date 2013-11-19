@@ -15,7 +15,9 @@
 	"require": {
 		"php": ">=5.3.2",
 		"symfony/framework-bundle": "~2.1",
-		"leaseweb/api-caller-bundle": "*"
+		"symfony/yaml": "~2.1",
+		"leaseweb/api-caller-bundle": "*",
+		"leaseweb/memcache-bundle": "*"
 	},
 	"require-dev": {
 		"twig/twig": "~1.5",

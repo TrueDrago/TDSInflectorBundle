@@ -2,6 +2,7 @@
 
 namespace TDS\InflectorBundle\Inflector;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use \TDS\InflectorBundle\Definition\InflectionStrategyInterface;
 
 /**
@@ -24,6 +25,8 @@ class Word
 	const PREPOSITIONAL	= 'Prepositional';
 
 	const CONSONANT = 'бвгджзйклмнпрстфхцчшщ';
+/** @var int */
+	protected $cacheTime = 0;
 
 /** @var string $word */
 	protected $word;
@@ -31,6 +34,8 @@ class Word
 	protected $inflectionStrategy;
 /** @var array|null */
 	protected $cases = null;
+/** @var \Symfony\Component\DependencyInjection\ContainerInterface */
+	protected $container;
 /** @var array */
 	protected static $avaliableCases = array(
 		self::NOMINATIVE,
@@ -42,13 +47,17 @@ class Word
 	);
 
 /**
- * @param                             $Word
- * @param InflectionStrategyInterface $InflectionStrategy
+ * @param                                                           $Word
+ * @param InflectionStrategyInterface                               $InflectionStrategy
+ * @param ContainerInterface                                        $Container
+ * @param int                                                       $CacheTime
  */
-	public function __construct( $Word, InflectionStrategyInterface $InflectionStrategy )
+	public function __construct( $Word, InflectionStrategyInterface $InflectionStrategy, ContainerInterface $Container, $CacheTime = 0 )
 	{
 		$this->word = $Word;
 		$this->inflectionStrategy = $InflectionStrategy;
+		$this->container = $Container;
+		$this->cacheTime = $CacheTime;
 	}
 
 /**
@@ -75,12 +84,24 @@ class Word
 			$Name = substr( $Name, 3 );
 		}
 		else {
-			throw new \BadFunctionCallException( sprintf( 'Shiit!' ) );
+			throw new \BadFunctionCallException( sprintf( 'Unsupported method call!' ) );
 		}
 		$this->checkValidCase( $Name );
 
-		if ( null === $this->cases ) {
+		if ( $this->cacheTime )
+		{
+			$memcahed = $this->container->get( 'memcache.default' );
+			if ( $cases = $memcahed->get( $this->getCacheKey() ) ) {
+				$this->cases = $cases;
+			}
+		}
+
+		if ( null === $this->cases )
+		{
 			$this->inflectionStrategy->inflect( $this );
+			if ( $this->cacheTime ) {
+				$memcahed->set( $this->getCacheKey(), $this->cases, $this->cacheTime );
+			}
 		}
 
 		return $this->cases[$Name];
@@ -118,5 +139,13 @@ class Word
 	public function __toString()
 	{
 		return $this->word;
+	}
+
+/**
+ * @return string
+ */
+	private function getCacheKey()
+	{
+		return 'inflect.' . $this->word;
 	}
 }
