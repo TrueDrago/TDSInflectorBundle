@@ -1,13 +1,18 @@
 parameters:
     tds.inflector.class: TDS\InflectorBundle\Inflector\Inflector
-    tds.twig.indlector_extension.class: TDS\InflectorBundle\Twig\InflectorExtension
+    tds.twig.inflector_extension.class: TDS\InflectorBundle\Twig\InflectorExtension
+    tds.twig.pluralize_extension.class: TDS\InflectorBundle\Twig\PluralizeExtension
 
 services:
     tds.inflector:
         class: %tds.inflector.class%
         arguments: [@service_container]
     tds.twig.inflector_extension:
-        class: %tds.twig.indlector_extension.class%
+        class: %tds.twig.inflector_extension.class%
         arguments: [@service_container]
         tags:
             - { name: twig.extension }
+    tds.twig.pluralize_extension:
+            class: %tds.twig.pluralize_extension.class%
+            tags:
+                - { name: twig.extension }

@@ -32,6 +32,6 @@ class InflectorExtension extends \Twig_Extension
 
 	public function getName()
 	{
-		return 'acme_extension';
+		return 'tds.twig.inflector_extension';
 	}
 }
