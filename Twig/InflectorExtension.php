@@ -19,11 +19,11 @@ class InflectorExtension extends \Twig_Extension
 	public function getFilters()
 	{
 		return array(
-			new \Twig_SimpleFilter('prepositionWithInPreposition', array($this, 'prepositionWithInPrepositionFilter')),
+			new \Twig_SimpleFilter('prepositionalWithInPreposition', array($this, 'prepositionalWithInPrepositionFilter')),
 		);
 	}
 
-	public function prepositionWithInPrepositionFilter( $WordString )
+	public function prepositionalWithInPrepositionFilter( $WordString )
 	{
 		$inflector = $this->container->get( 'tds.inflector' );
 		$word = $inflector->createWord( $WordString );
