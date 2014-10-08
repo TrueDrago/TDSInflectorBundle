@@ -104,7 +104,7 @@ class Word
 			}
 		}
 
-		return $this->cases[$Name];
+		return $this->cases && array_key_exists($Name, $this->cases) ? $this->cases[$Name] : $this->word;
 	}
 
 /**
