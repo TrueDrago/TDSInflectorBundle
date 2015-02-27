@@ -9,44 +9,51 @@ use TDS\InflectorBundle\Definition\InflectionStrategyAbstract;
 use TDS\InflectorBundle\Definition\InflectionStrategyInterface;
 use TDS\InflectorBundle\Inflector\Word;
 
-class Yandex extends InflectionStrategyAbstract implements InflectionStrategyInterface {
+class Yandex extends InflectionStrategyAbstract implements InflectionStrategyInterface
+{
 
-	const YANDEX_URL = 'http://export.yandex.ru/inflect.xml';
+    const YANDEX_URL = 'http://export.yandex.ru/inflect.xml';
 
-	protected static $avaliableCases = array(
-		1 => Word::NOMINATIVE,
-		2 => Word::GENITIVE,
-		3 => Word::DATIVE,
-		4 => Word::ACCUSATIVE,
-		5 => Word::ABLATIVE,
-		6 => Word::PREPOSITIONAL,
-	);
+    protected static $avaliableCases = array(
+        1 => Word::NOMINATIVE,
+        2 => Word::GENITIVE,
+        3 => Word::DATIVE,
+        4 => Word::ACCUSATIVE,
+        5 => Word::ABLATIVE,
+        6 => Word::PREPOSITIONAL,
+    );
 
-/**
- *
- * @param Word $Word
- *
- * @return void
- */
-	public function inflect( Word $Word )
-	{
-		/** @var LoggingApiCaller $caller */
-		$caller = $this->container->get( 'api_caller' );
+    /**
+     *
+     * @param Word $Word
+     *
+     * @return void
+     */
+    public function inflect(Word $Word)
+    {
+        /** @var LoggingApiCaller $caller */
+        $caller = $this->container->get('api_caller');
 
-		$call = new HttpPost( self::YANDEX_URL, array('name' => (string) $Word) );
-		$result = $caller->call( $call );
+        $call = new HttpPost(self::YANDEX_URL, array('name' => (string)$Word));
+        $result = $caller->call($call);
+        $result = null;
 
-		$dom = new \DOMDocument();
-		$dom->loadXML( $result );
+        if (!$result)
+        {
+            return;
+        }
 
-		$elements = $dom->getElementsByTagName( 'inflection' );
-		foreach( $elements as $element )
-		{
-			$case = $element->getAttribute( 'case' );
-			if ( in_array( $case, array_keys( self::$avaliableCases ) ) )
-			{
-				$Word->set( self::$avaliableCases[$case], $element->nodeValue );
-			}
-		}
-	}
+        $dom = new \DOMDocument();
+        $dom->loadXML($result);
+
+        $elements = $dom->getElementsByTagName('inflection');
+        foreach ($elements as $element)
+        {
+            $case = $element->getAttribute('case');
+            if (in_array($case, array_keys(self::$avaliableCases)))
+            {
+                $Word->set(self::$avaliableCases[$case], $element->nodeValue);
+            }
+        }
+    }
 }
