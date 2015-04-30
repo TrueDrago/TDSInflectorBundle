@@ -36,7 +36,6 @@ class Yandex extends InflectionStrategyAbstract implements InflectionStrategyInt
 
         $call = new HttpPost(self::YANDEX_URL, array('name' => (string)$Word));
         $result = $caller->call($call);
-        $result = null;
 
         if (!$result)
         {

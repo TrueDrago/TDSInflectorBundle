@@ -9,35 +9,61 @@ use TDS\InflectorBundle\Strategy\Yandex;
 
 class Inflector
 {
-/** @var ContainerInterface */
-	protected $container;
+    /** @var ContainerInterface */
+    protected $container;
 
-/**
- * @param ContainerInterface $Container
- */
-	public function __construct( ContainerInterface $Container )
-	{
-		$this->container = $Container;
-	}
-/**
- *
- * @param string $WordString
- * @return Word
- */
-	public function createWord( $WordString )
-	{
-		$cacheTime = $this->container->getParameter( 'tds_inflector.cache_time' );
-		return new Word( $WordString, $this->getInflectionStrategy(), $this->container, $cacheTime );
-	}
+    /** @var  array */
+    protected $localCachedWords;
 
-/**
- * @todo make parameters when there will be more than one inflector
- * @return InflectionStrategyInterface
- */
-	private function getInflectionStrategy()
-	{
-		$strategy = new Yandex();
-		$strategy->setContainer( $this->container );
-		return $strategy;
-	}
+    /**
+     * @param ContainerInterface $Container
+     */
+    public function __construct(ContainerInterface $Container)
+    {
+        $this->container = $Container;
+    }
+
+    /**
+     *
+     * @param string $WordString
+     * @return Word
+     */
+    public function createWord($wordString)
+    {
+        if (! $word = $this->getCachedWord($wordString))
+        {
+            $cacheTime = $this->container->getParameter('tds_inflector.cache_time');
+            $word = new Word($wordString, $this->getInflectionStrategy(), $this->container, $cacheTime);
+            $this->addCachedWord($word);
+        }
+        return $word;
+    }
+
+    /**
+     * @param $WordString
+     * @return null
+     */
+    protected function getCachedWord($wordString)
+    {
+        return isset($this->localCachedWords[$wordString]) ? $this->localCachedWords[$wordString] : null;
+    }
+
+    /**
+     * @param Word $word
+     */
+    protected function addCachedWord(Word $word)
+    {
+        $this->localCachedWords[(string)$word] = $word;
+    }
+
+    /**
+     * @todo make parameters when there will be more than one inflector
+     * @return InflectionStrategyInterface
+     */
+    private function getInflectionStrategy()
+    {
+        $strategy = new Yandex();
+        $strategy->setContainer($this->container);
+        return $strategy;
+    }
 }
