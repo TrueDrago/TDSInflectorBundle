@@ -100,7 +100,7 @@ class Word
 		{
 			$this->inflectionStrategy->inflect( $this );
 			if ( $this->cacheTime ) {
-				$memcahed->set( $this->getCacheKey(), $this->cases, $this->cacheTime );
+				$memcahed->set( $this->getCacheKey(), $this->cases, 0, $this->cacheTime );
 			}
 		}
 
